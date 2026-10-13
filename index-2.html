@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erine Grosjean Haegeli – Portfolio marketing digital</title>
+  <meta name="description" content="Portfolio d'Erine Grosjean Haegeli, étudiante en BUT Techniques de Commercialisation, spécialisée en marketing digital, e-commerce et entrepreneuriat.">
+
+  <!-- Polices Google Fonts : Fraunces (titres) et DM Sans (texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       COULEURS ET RÉGLAGES : modifie ici pour changer tout le site
+       ============================================================ */
+    :root {
+      --creme: #F7F3EA;        /* fond du site */
+      --creme-fonce: #EEE8D8;  /* fond des blocs alternés */
+      --sauge: #7F9A84;        /* vert sauge (décors) */
+      --sauge-clair: #DCE5DA;  /* vert sauge très clair */
+      --sauge-fonce: #4A6552;  /* vert sauge foncé (boutons, liens) */
+      --encre: #232D27;        /* couleur du texte */
+      --gris: #58645C;         /* texte secondaire */
+      --trait: #D9D3C1;        /* petits traits de séparation */
+      --police-titre: "Fraunces", Georgia, "Times New Roman", serif;
+      --police-texte: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: var(--police-texte);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--encre);
+      background: var(--creme);
+    }
+
+    a { color: var(--sauge-fonce); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--sauge-fonce);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    h1, h2, h3 { font-family: var(--police-titre); line-height: 1.15; font-weight: 700; }
+
+    .conteneur { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+
+    section { padding: 5rem 0; }
+    section.fonce { background: var(--creme-fonce); }
+
+    h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: 2.25rem; }
+
+    /* ============================================================
+       MENU DU HAUT
+       ============================================================ */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(247, 243, 234, 0.94);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--trait);
+    }
+    .barre {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.9rem 0;
+    }
+    .logo {
+      font-family: var(--police-titre); font-weight: 700; font-size: 1.15rem;
+      color: var(--encre); text-decoration: none; white-space: nowrap;
+    }
+    nav ul {
+      list-style: none; display: flex; gap: 1.4rem;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    nav ul::-webkit-scrollbar { display: none; }
+    nav a {
+      color: var(--gris); text-decoration: none; font-weight: 500;
+      font-size: 0.97rem; white-space: nowrap;
+    }
+    nav a:hover { color: var(--sauge-fonce); }
+
+    /* ============================================================
+       ACCUEIL
+       ============================================================ */
+    .accueil { padding: 4.5rem 0 5rem; }
+    .accueil-grille {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .accueil h1 {
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .titre-poste {
+      font-size: 1.3rem; font-weight: 500; color: var(--sauge-fonce);
+      margin-bottom: 1.25rem;
+    }
+    .accroche { max-width: 34rem; color: var(--gris); margin-bottom: 2rem; }
+
+    .boutons { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .bouton {
+      display: inline-block; padding: 0.85rem 1.6rem; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      border: 2px solid var(--sauge-fonce);
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .bouton.plein { background: var(--sauge-fonce); color: #fff; }
+    .bouton.plein:hover { background: var(--encre); border-color: var(--encre); }
+    .bouton.vide { background: transparent; color: var(--sauge-fonce); }
+    .bouton.vide:hover { background: var(--sauge-clair); }
+
+    /* Cadre photo : remplace-le par ta photo (voir le commentaire dans le HTML) */
+    .cadre-photo {
+      aspect-ratio: 4 / 5; width: min(100%, 360px); justify-self: center;
+      background: var(--sauge); border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%;
+      display: grid; place-items: center; overflow: hidden;
+      color: var(--creme); font-family: var(--police-titre); font-size: 5rem; font-weight: 700;
+    }
+    .cadre-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Seule animation du site : l'accueil apparaît doucement au chargement */
+    @media (prefers-reduced-motion: no-preference) {
+      .accueil-grille { animation: apparition 0.9s ease-out both; }
+      @keyframes apparition {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: none; }
+      }
+    }
+
+    /* ============================================================
+       QUI SUIS-JE
+       ============================================================ */
+    .presentation { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; }
+    .presentation p + p { margin-top: 1rem; }
+    .points-forts { list-style: none; display: grid; gap: 0.9rem; align-content: start; }
+    .points-forts li {
+      background: var(--creme); border: 1px solid var(--trait);
+      border-radius: 16px; padding: 1rem 1.25rem;
+    }
+    .points-forts strong { display: block; font-family: var(--police-titre); font-size: 1.1rem; }
+    .points-forts span { color: var(--gris); font-size: 0.97rem; }
+
+    /* ============================================================
+       PARCOURS (frise : l'ordre chronologique compte ici)
+       ============================================================ */
+    .frise { list-style: none; border-left: 2px solid var(--sauge); margin-left: 0.5rem; }
+    .frise li { position: relative; padding: 0 0 2rem 2rem; }
+    .frise li:last-child { padding-bottom: 0; }
+    .frise li::before {
+      content: ""; position: absolute; left: -0.6rem; top: 0.4rem;
+      width: 1rem; height: 1rem; border-radius: 50%;
+      background: var(--creme); border: 3px solid var(--sauge-fonce);
+    }
+    .frise .date { color: var(--sauge-fonce); font-weight: 700; font-size: 0.95rem; }
+    .frise h3 { font-size: 1.3rem; margin: 0.15rem 0 0.3rem; }
+    .frise p { color: var(--gris); max-width: 40rem; }
+
+    /* ============================================================
+       EXPÉRIENCES
+       ============================================================ */
+    .experiences { display: grid; gap: 1rem; }
+    .experience {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 2rem;
+      background: var(--creme-fonce); border-radius: 14px; padding: 1.4rem 1.6rem;
+    }
+    section.fonce .experience { background: var(--creme); border: 1px solid var(--trait); }
+    .experience h3 { font-size: 1.2rem; }
+    .experience .lieu { color: var(--sauge-fonce); font-weight: 500; }
+    .experience .periode { color: var(--gris); font-size: 0.95rem; text-align: right; }
+    .experience p { grid-column: 1 / -1; color: var(--gris); }
+
+    /* ============================================================
+       PROJETS (SAÉ)
+       ============================================================ */
+    .projets { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.4rem; }
+    .projet {
+      background: var(--creme); border: 1px solid var(--trait);
+      border-radius: 20px; padding: 1.7rem; display: flex; flex-direction: column;
+    }
+    .projet .illustration {
+      height: 150px; border-radius: 12px; margin-bottom: 1.25rem;
+      background: var(--sauge-clair); display: grid; place-items: center;
+      color: var(--sauge-fonce); font-size: 0.9rem; text-align: center; padding: 0.5rem;
+      overflow: hidden;
+    }
+    .projet .illustration img { width: 100%; height: 100%; object-fit: cover; }
+    .projet h3 { font-size: 1.35rem; margin-bottom: 0.6rem; }
+    .projet p { color: var(--gris); margin-bottom: 1.1rem; }
+    .etiquettes { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: auto; }
+    .etiquettes li {
+      background: var(--sauge-clair); color: var(--sauge-fonce);
+      font-size: 0.85rem; font-weight: 500; padding: 0.25rem 0.8rem; border-radius: 999px;
+    }
+
+    /* ============================================================
+       COMPÉTENCES
+       ============================================================ */
+    .competences { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+    .competences h3 { font-size: 1.2rem; margin-bottom: 0.9rem; }
+    .competences ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .competences li {
+      background: var(--creme); border: 1px solid var(--trait);
+      padding: 0.35rem 0.95rem; border-radius: 999px; font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact { text-align: center; }
+    .contact p { max-width: 34rem; margin: 0 auto 2rem; color: var(--gris); }
+    .contact .boutons { justify-content: center; }
+
+    footer {
+      padding: 1.8rem 0; text-align: center; color: var(--gris); font-size: 0.9rem;
+      border-top: 1px solid var(--trait);
+    }
+
+    /* ============================================================
+       MOBILE ET TABLETTE
+       ============================================================ */
+    @media (max-width: 820px) {
+      section { padding: 3.5rem 0; }
+      .accueil { padding-top: 2.5rem; }
+      .accueil-grille, .presentation { grid-template-columns: 1fr; gap: 2rem; }
+      .cadre-photo { order: -1; width: min(70%, 260px); }
+      .experience { grid-template-columns: 1fr; }
+      .experience .periode { text-align: left; }
+      .barre { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      nav { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= MENU ================= -->
+  <header>
+    <div class="conteneur barre">
+      <a class="logo" href="#accueil">Erine Grosjean Haegeli</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#apropos">Qui suis-je</a></li>
+          <li><a href="#parcours">Parcours</a></li>
+          <li><a href="#experiences">Expériences</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= ACCUEIL ================= -->
+    <section class="accueil" id="accueil">
+      <div class="conteneur accueil-grille">
+        <div>
+          <h1>Erine Grosjean Haegeli</h1>
+          <p class="titre-poste">Étudiante en marketing digital et e-commerce</p>
+          <p class="accroche">
+            [Écris ici ta phrase d'accroche. Exemple : Je transforme des idées en campagnes
+            qui donnent envie, en alliant créativité, analyse et sens du terrain.]
+          </p>
+          <div class="boutons">
+            <a class="bouton plein" href="#projets">Voir mes projets</a>
+            <a class="bouton vide" href="#contact">Me contacter</a>
+          </div>
+        </div>
+
+        <!--
+          POUR METTRE TA PHOTO :
+          1. Dépose ta photo dans le dépôt GitHub sous le nom "photo.jpg"
+          2. Remplace la ligne <span>EG</span> ci-dessous par :
+             <img src="photo.jpg" alt="Portrait d'Erine Grosjean Haegeli">
+        -->
+        <div class="cadre-photo" aria-hidden="false">
+          <span>EG</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= QUI SUIS-JE ================= -->
+    <section class="fonce" id="apropos">
+      <div class="conteneur">
+        <h2>Qui suis-je ?</h2>
+        <div class="presentation">
+          <div>
+            <p>
+              Je suis étudiante en BUT Techniques de Commercialisation à l'IUT de Colmar,
+              avec une spécialisation en marketing digital, e-commerce et entrepreneuriat.
+              Je suis basée à Mulhouse.
+            </p>
+            <p>
+              [Ajoute ici 2 ou 3 phrases sur toi : ce qui te motive, ce que tu aimes
+              dans le marketing, le type de poste ou d'alternance que tu recherches.]
+            </p>
+          </div>
+          <ul class="points-forts">
+            <li><strong>[Point fort 1]</strong><span>[Exemple : créativité sur les réseaux sociaux]</span></li>
+            <li><strong>[Point fort 2]</strong><span>[Exemple : rigueur dans l'analyse de données]</span></li>
+            <li><strong>[Point fort 3]</strong><span>[Exemple : aisance relationnelle avec les clients]</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PARCOURS ================= -->
+    <section id="parcours">
+      <div class="conteneur">
+        <h2>Mon parcours scolaire</h2>
+        <ol class="frise">
+          <li>
+            <span class="date">Septembre 2024 – Juin 2027</span>
+            <h3>BUT Techniques de Commercialisation</h3>
+            <p>IUT de Colmar. Spécialisation Marketing Digital, E-commerce et Entrepreneuriat.</p>
+          </li>
+          <li>
+            <span class="date">[Année – Année]</span>
+            <h3>[Baccalauréat, série ou spécialités]</h3>
+            <p>[Lycée, ville. Ajoute une mention ou une option si tu veux.]</p>
+          </li>
+          <!-- Pour ajouter une étape, copie un bloc <li>…</li> entier -->
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= EXPÉRIENCES ================= -->
+    <section class="fonce" id="experiences">
+      <div class="conteneur">
+        <h2>Expériences professionnelles</h2>
+        <div class="experiences">
+
+          <article class="experience">
+            <div>
+              <h3>[Intitulé du poste ou du stage]</h3>
+              <div class="lieu">[Nom de l'entreprise, ville]</div>
+            </div>
+            <div class="periode">[Mois année – Mois année]</div>
+            <p>[Décris en 2 ou 3 phrases tes missions et ce que tu y as appris.]</p>
+          </article>
+
+          <article class="experience">
+            <div>
+              <h3>[Intitulé du poste, job étudiant]</h3>
+              <div class="lieu">[Nom de l'entreprise, ville]</div>
+            </div>
+            <div class="periode">[Mois année – Mois année]</div>
+            <p>[Décris en 2 ou 3 phrases tes missions et ce que tu y as appris.]</p>
+          </article>
+
+          <!-- Pour ajouter une expérience, copie un bloc <article>…</article> entier -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJETS ================= -->
+    <section id="projets">
+      <div class="conteneur">
+        <h2>Mes projets SAÉ</h2>
+        <div class="projets">
+
+          <!--
+            POUR AJOUTER UNE IMAGE À UN PROJET :
+            Dépose l'image dans le dépôt, puis remplace le texte entre
+            <div class="illustration"> et </div> par :
+            <img src="nom-de-ton-image.jpg" alt="Description de l'image">
+          -->
+
+          <article class="projet">
+            <div class="illustration">[Image du projet]</div>
+            <h3>Baby Master</h3>
+            <p>[Décris le contexte, ta mission et le résultat en 2 phrases.]</p>
+            <ul class="etiquettes"><li>Vente</li><li>[Compétence]</li></ul>
+          </article>
+
+          <article class="projet">
+            <div class="illustration">[Image du projet]</div>
+            <h3>Fiches persona</h3>
+            <p>[Décris le contexte, ta mission et le résultat en 2 phrases.]</p>
+            <ul class="etiquettes"><li>Persona</li><li>[Compétence]</li></ul>
+          </article>
+
+          <article class="projet">
+            <div class="illustration">[Image du projet]</div>
+            <h3>Marketing Mix Kit Touriste</h3>
+            <p>[Décris le contexte, ta mission et le résultat en 2 phrases.]</p>
+            <ul class="etiquettes"><li>Marketing mix</li><li>[Compétence]</li></ul>
+          </article>
+
+          <article class="projet">
+            <div class="illustration">[Image du projet]</div>
+            <h3>Audit digital Emma</h3>
+            <p>[Décris le contexte, ta mission et le résultat en 2 phrases.]</p>
+            <ul class="etiquettes"><li>Audit digital</li><li>[Compétence]</li></ul>
+          </article>
+
+          <article class="projet">
+            <div class="illustration">[Image du projet]</div>
+            <h3>SeaSense</h3>
+            <p>[Décris le contexte, ta mission et le résultat en 2 phrases.]</p>
+            <ul class="etiquettes"><li>[Compétence]</li><li>[Compétence]</li></ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMPÉTENCES ================= -->
+    <section class="fonce" id="competences">
+      <div class="conteneur">
+        <h2>Mes compétences</h2>
+        <div class="competences">
+          <div>
+            <h3>Marketing digital</h3>
+            <ul>
+              <li>Réseaux sociaux</li>
+              <li>Création de contenu</li>
+              <li>Audit digital</li>
+              <li>[Autre]</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Vente et e-commerce</h3>
+            <ul>
+              <li>Relation client</li>
+              <li>Marketing mix</li>
+              <li>Études de marché</li>
+              <li>[Autre]</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Outils</h3>
+            <ul>
+              <li>Canva</li>
+              <li>[Outil]</li>
+              <li>[Outil]</li>
+              <li>[Outil]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact">
+      <div class="conteneur">
+        <h2>Me contacter</h2>
+        <p>
+          Je recherche [un job étudiant, un stage, une alternance]. Écris-moi,
+          je réponds rapidement.
+        </p>
+        <div class="boutons">
+          <!-- Remplace l'adresse e-mail, le lien LinkedIn et le nom du CV -->
+          <a class="bouton plein" href="mailto:ton.email@exemple.com">Envoyer un e-mail</a>
+          <a class="bouton vide" href="https://www.linkedin.com/in/ton-profil" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="bouton vide" href="cv.pdf" download>Télécharger mon CV</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="conteneur">© 2026 Erine Grosjean Haegeli</div>
+  </footer>
+
+</body>
+</html>
